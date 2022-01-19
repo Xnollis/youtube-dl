@@ -1528,6 +1528,9 @@ from .weibo import (
     WeiboIE,
     WeiboMobileIE
 )
+from .weixinmp import (
+    WeiXinMPVideoIE
+)
 from .weiqitv import WeiqiTVIE
 from .wistia import (
     WistiaIE,

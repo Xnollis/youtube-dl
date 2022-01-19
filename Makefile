@@ -1,5 +1,5 @@
-all: youtube-dl README.md CONTRIBUTING.md README.txt youtube-dl.1 youtube-dl.bash-completion youtube-dl.zsh youtube-dl.fish supportedsites
-
+#all: youtube-dl README.md CONTRIBUTING.md README.txt youtube-dl.1 youtube-dl.bash-completion youtube-dl.zsh youtube-dl.fish supportedsites
+all: youtube-dl README.md CONTRIBUTING.md  youtube-dl.bash-completion youtube-dl.zsh youtube-dl.fish supportedsites
 clean:
 	rm -rf youtube-dl.1.temp.md youtube-dl.1 youtube-dl.bash-completion README.txt MANIFEST build/ dist/ .coverage cover/ youtube-dl.tar.gz youtube-dl.zsh youtube-dl.fish youtube_dl/extractor/lazy_extractors.py *.dump *.part* *.ytdl *.info.json *.mp4 *.m4a *.flv *.mp3 *.avi *.mkv *.webm *.3gp *.wav *.ape *.swf *.jpg *.png CONTRIBUTING.md.tmp youtube-dl youtube-dl.exe
 	find . -name "*.pyc" -delete
@@ -88,13 +88,13 @@ issuetemplates: devscripts/make_issue_template.py .github/ISSUE_TEMPLATE_tmpl/1_
 supportedsites:
 	$(PYTHON) devscripts/make_supportedsites.py docs/supportedsites.md
 
-README.txt: README.md
-	pandoc -f $(MARKDOWN) -t plain README.md -o README.txt
+#README.txt: README.md
+#	pandoc -f $(MARKDOWN) -t plain README.md -o README.txt
 
-youtube-dl.1: README.md
-	$(PYTHON) devscripts/prepare_manpage.py youtube-dl.1.temp.md
-	pandoc -s -f $(MARKDOWN) -t man youtube-dl.1.temp.md -o youtube-dl.1
-	rm -f youtube-dl.1.temp.md
+#youtube-dl.1: README.md
+#	$(PYTHON) devscripts/prepare_manpage.py youtube-dl.1.temp.md
+#	pandoc -s -f $(MARKDOWN) -t man youtube-dl.1.temp.md -o youtube-dl.1
+#	rm -f youtube-dl.1.temp.md
 
 youtube-dl.bash-completion: youtube_dl/*.py youtube_dl/*/*.py devscripts/bash-completion.in
 	$(PYTHON) devscripts/bash-completion.py
