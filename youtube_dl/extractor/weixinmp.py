@@ -32,9 +32,13 @@ class WeiXinMPVideoIE(InfoExtractor):
 
         # TODO more code goes here, for example ...
         # title = self._html_search_regex(r'<meta property="twitter:title" content="(.*?)"', webpage, 'title')
-        title = self._og_search_title(webpage)
-        vid = self._html_search_regex(r'<iframe.*?data-mpvid="(.*?)"', webpage, 'vid')
+        try:
+            vid = self._html_search_regex(r'<iframe.*?data-mpvid="(.*?)"', webpage, 'vid')
+        except:
+            print("Search Vid in another way...")
+            vid = self._html_search_regex(r"""'(wxv_\d+)'""", webpage, 'vid')
 
+        title = self._og_search_title(webpage)
         play_url_info = self._download_json(
             'https://mp.weixin.qq.com/mp/videoplayer?action=get_mp_video_play_url&preview=0&vid=%s' % (vid,),
             video_id, note='Downloading video info page')
